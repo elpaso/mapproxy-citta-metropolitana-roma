@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Mapproxy Demo Service</title>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            padding: 0;
+            margin: 0;
+        }
+
+        html, body {
+            height: 100%;
+            width: 100%;
+            background: white;
+        }
+
+    </style>
+</head>
+<body>
+<h1><a href="./mapproxy">Mapproxy</a></h1>
+</body>
+</html>

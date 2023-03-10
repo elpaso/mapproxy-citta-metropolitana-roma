@@ -1,0 +1,12 @@
+Descrizione,nome layer,EPSG ,Pixel,Unita di misura,Livelli,Da configurare su MapProxy,url wms,percorso e/o file ecw,dimensione
+Egeos 2011,egeos_2011,25833,0.50,Metri,20,si,https://siticatasto.cittametropolitanaroma.it/ows/7/qdjango/114/?SERVICE=WMS,egeos_2011_epsg3004.ecw,7525059
+Realvista 2007,realvista2007,25833,0.50,Metri,20,si,https://siticatasto.cittametropolitanaroma.it/ows/ortofoto_base/qdjango/111/?SERVICE=WMS,realvista2007_epsg3004.ecw,27225077
+IT 2000,it2000_nr_mare,25833,0.50,Metri,20,si,https://siticatasto.cittametropolitanaroma.it/ows/ortofoto_base/qdjango/113/?SERVICE=WMS,it2000_nr_mare_epsg3004.ecw,7146593
+IT 2005,it2000,25833,1.0,Metri,20,si,https://siticatasto.cittametropolitanaroma.it/ows/ortofoto_base/qdjango/112/?SERVICE=WMS,it2000_epsg3004.ecw,2199415
+Aima 1996,aima_1996,25833,1.10,Metri,20,si,https://siticatasto.cittametropolitanaroma.it/ows/ortofoto_base/qdjango/115/?SERVICE=WMS,aima_1996_epsg3004.ecw.ecw,818741
+Nctr 2014,nctr_2014,25833,0.32,Metri,20,si,https://siticatasto.cittametropolitanaroma.it/ows/ortofoto_base/qdjango/119/?SERVICE=WMS,nctr_2014.ecw,11174593
+DBTN 25833,dbtn5000_epsg25833,25833,0.42,Metri,20,si,https://siticatasto.cittametropolitanaroma.it/ows/7/qdjango/104/?SERVICE=WMS,dbtn5000_epsg3004.ecw,4672224
+Ctr 1990,CTR 1990,25833,1.10,Metri,20,si,https://siticatasto.cittametropolitanaroma.it/ows/ortofoto_base/qdjango/116/?SERVICE=WMS,ctr1990_epsg3004.ecw,977269
+DTM 5,dtm_5m,25833,5.0,Metri,20,si,https://siticatasto.cittametropolitanaroma.it/ows/ortofoto_base/qdjango/118/?SERVICE=WMS,dtm_5m.ecw,28027
+DEM m,dem colore,25833,30.0,Metri,20,si,https://siticatasto.cittametropolitanaroma.it/ows/ortofoto_base/qdjango/117/?SERVICE=WMS,dem_provincia_colore_epsg3004.ecw,1071
+Agea 2014,agea_2014_riquadri_totale,25833,0.20,Metri,20,si,https://siticatasto.cittametropolitanaroma.it/ows/7/qdjango/120/?SERVICE=WMS,\\svr-vm-nas-gis\Scambio\PROGETTI_XML\progetti_g3w-suite_3-4\project_data\ecw\ritagli_agea_2014\taglio_agea2014_1.ecw,932943

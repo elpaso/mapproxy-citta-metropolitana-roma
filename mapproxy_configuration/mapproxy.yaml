@@ -1,0 +1,400 @@
+# #####################################################################
+#                 MapProxy configuration
+# #####################################################################
+#
+# This is _not_ a runnable configuration, but it contains most
+# available options in meaningful combinations.
+#
+# Use this file in addition to the documentation to see where and how
+# things can be configured.
+
+
+services:
+  demo:
+  wms:
+    # only offer WMS 1.1.1
+    versions: ['1.1.1', '1.3.0']
+    # supported SRS for this WMS
+    srs: ['CRS:84', 'EPSG:25833', 'EPSG:4326', 'EPSG:3857']
+    # force the layer extents (BBOX) to be displayed in this SRS
+    bbox_srs: ['EPSG:4326']
+    # limit the supported image formats.
+    image_formats: ['image/jpeg', 'image/png', 'image/gif', 'image/GeoTIFF', 'image/tiff']
+    # return an OGC service exception when one or more sources return errors
+    # or no response at all (e.g. timeout)
+    on_source_errors: raise
+
+    # some WMS clients do not send all required parameters in feature info
+    # requests, MapProxy ignores these errors unless you set strict to true.
+    strict: true
+
+    # list of feature info types the server should offer
+    featureinfo_types: ['text', 'html', 'xml', 'json']
+
+    md:
+      # metadata used in capabilities documents
+      title: Città Metropolitana di Roma
+      abstract: Città Metropolitana di Roma
+  tms:
+    use_grid_names: true
+  wmts:
+    restful: true
+    restful_template: '/{Layer}/{TileMatrixSet}/{TileMatrix}/{TileCol}/{TileRow}.{Format}'
+    kvp: true
+  kml:
+    use_grid_names: true
+
+globals:
+  cache:
+    meta_size: [6, 6]
+    meta_buffer: 20
+    lock_dir: './cache_data/locks'
+    # where to store lockfiles for tile creation
+    tile_lock_dir: './cache_data/tile_locks'
+    link_single_color_images: true
+  http:
+    ssl_no_cert_checks: true
+
+
+grids:
+  localgrid:
+    srs: 'EPSG:25833'
+    bbox: [11.492503, 41.374824, 13.51084, 42.340712]
+    bbox_srs: 'EPSG:4326'
+    #mapproxy-util scales -l 12 --as-res-config 500000
+    res: [
+         #  res            level     scale @90.7 DPI
+          140.0000000000, #  0      500000.00000000
+           70.0000000000, #  1      250000.00000000
+           35.0000000000, #  2      125000.00000000
+           17.5000000000, #  3       62500.00000000
+            8.7500000000, #  4       31250.00000000
+            4.3750000000, #  5       15625.00000000
+            2.1875000000, #  6        7812.50000000
+            1.0937500000, #  7        3906.25000000
+            0.5468750000, #  8        1953.12500000
+            0.2734375000, #  9         976.56250000
+            0.1367187500, # 10         488.28125000
+            0.0683593750, # 11         244.14062500
+    ]
+
+
+###################################################################################
+# Layers and caches, generate by createconfig.py 2023-03-10T15:24:40.400330
+
+
+layers:
+
+  - name: egeos_2011
+    title: Egeos 2011
+    sources: [egeos_2011_cache]
+
+
+  - name: realvista2007
+    title: Realvista 2007
+    sources: [realvista2007_cache]
+
+
+  - name: it2000_nr_mare
+    title: IT 2000
+    sources: [it2000_nr_mare_cache]
+
+
+  - name: it2000
+    title: IT 2005
+    sources: [it2000_cache]
+
+
+  - name: aima_1996
+    title: Aima 1996
+    sources: [aima_1996_cache]
+
+
+  - name: nctr_2014
+    title: Nctr 2014
+    sources: [nctr_2014_cache]
+
+
+  - name: dbtn5000_epsg25833
+    title: DBTN 25833
+    sources: [dbtn5000_epsg25833_cache]
+
+
+  - name: CTR 1990
+    title: Ctr 1990
+    sources: [CTR_1990_cache]
+
+
+  - name: dtm_5m
+    title: DTM 5
+    sources: [dtm_5m_cache]
+
+
+  - name: dem colore
+    title: DEM m
+    sources: [dem_colore_cache]
+
+
+  - name: agea_2014_riquadri_totale
+    title: Agea 2014
+    sources: [agea_2014_riquadri_totale_cache]
+
+
+caches:
+
+  egeos_2011_cache:
+    sources: [egeos_2011_wms]
+    grids: [localgrid]
+    concurrent_tile_creators: 2
+    cache:
+      type: file
+
+
+  realvista2007_cache:
+    sources: [realvista2007_wms]
+    grids: [localgrid]
+    concurrent_tile_creators: 2
+    cache:
+      type: file
+
+
+  it2000_nr_mare_cache:
+    sources: [it2000_nr_mare_wms]
+    grids: [localgrid]
+    concurrent_tile_creators: 2
+    cache:
+      type: file
+
+
+  it2000_cache:
+    sources: [it2000_wms]
+    grids: [localgrid]
+    concurrent_tile_creators: 2
+    cache:
+      type: file
+
+
+  aima_1996_cache:
+    sources: [aima_1996_wms]
+    grids: [localgrid]
+    concurrent_tile_creators: 2
+    cache:
+      type: file
+
+
+  nctr_2014_cache:
+    sources: [nctr_2014_wms]
+    grids: [localgrid]
+    concurrent_tile_creators: 2
+    cache:
+      type: file
+
+
+  dbtn5000_epsg25833_cache:
+    sources: [dbtn5000_epsg25833_wms]
+    grids: [localgrid]
+    concurrent_tile_creators: 2
+    cache:
+      type: file
+
+
+  CTR_1990_cache:
+    sources: [CTR_1990_wms]
+    grids: [localgrid]
+    concurrent_tile_creators: 2
+    cache:
+      type: file
+
+
+  dtm_5m_cache:
+    sources: [dtm_5m_wms]
+    grids: [localgrid]
+    concurrent_tile_creators: 2
+    cache:
+      type: file
+
+
+  dem_colore_cache:
+    sources: [dem_colore_wms]
+    grids: [localgrid]
+    concurrent_tile_creators: 2
+    cache:
+      type: file
+
+
+  agea_2014_riquadri_totale_cache:
+    sources: [agea_2014_riquadri_totale_wms]
+    grids: [localgrid]
+    concurrent_tile_creators: 2
+    cache:
+      type: file
+
+
+sources:
+
+  egeos_2011_wms:
+    type: wms
+    wms_opts:
+      version: 1.3.0
+      featureinfo: True
+    req:
+      url: https://g3w-suite.cittametropolitanaroma.it/ows/7/qdjango/114/?SERVICE=WMS
+      layers: egeos_2011
+      transparent: true
+    supported_formats: [png,jpeg,tiff]
+    coverage:
+      bbox: [11.492503, 41.374824, 13.51084, 42.340712]
+      srs: 'EPSG:4326'
+
+
+  realvista2007_wms:
+    type: wms
+    wms_opts:
+      version: 1.3.0
+      featureinfo: True
+    req:
+      url: https://g3w-suite.cittametropolitanaroma.it/ows/ortofoto_base/qdjango/111/?SERVICE=WMS
+      layers: realvista2007
+      transparent: true
+    supported_formats: [png,jpeg,tiff]
+    coverage:
+      bbox: [11.492503, 41.374824, 13.51084, 42.340712]
+      srs: 'EPSG:4326'
+
+
+  it2000_nr_mare_wms:
+    type: wms
+    wms_opts:
+      version: 1.3.0
+      featureinfo: True
+    req:
+      url: https://g3w-suite.cittametropolitanaroma.it/ows/ortofoto_base/qdjango/113/?SERVICE=WMS
+      layers: it2000_nr_mare
+      transparent: true
+    supported_formats: [png,jpeg,tiff]
+    coverage:
+      bbox: [11.492503, 41.374824, 13.51084, 42.340712]
+      srs: 'EPSG:4326'
+
+
+  it2000_wms:
+    type: wms
+    wms_opts:
+      version: 1.3.0
+      featureinfo: True
+    req:
+      url: https://g3w-suite.cittametropolitanaroma.it/ows/ortofoto_base/qdjango/112/?SERVICE=WMS
+      layers: it2000
+      transparent: true
+    supported_formats: [png,jpeg,tiff]
+    coverage:
+      bbox: [11.492503, 41.374824, 13.51084, 42.340712]
+      srs: 'EPSG:4326'
+
+
+  aima_1996_wms:
+    type: wms
+    wms_opts:
+      version: 1.3.0
+      featureinfo: True
+    req:
+      url: https://g3w-suite.cittametropolitanaroma.it/ows/ortofoto_base/qdjango/115/?SERVICE=WMS
+      layers: aima_1996
+      transparent: true
+    supported_formats: [png,jpeg,tiff]
+    coverage:
+      bbox: [11.492503, 41.374824, 13.51084, 42.340712]
+      srs: 'EPSG:4326'
+
+
+  nctr_2014_wms:
+    type: wms
+    wms_opts:
+      version: 1.3.0
+      featureinfo: True
+    req:
+      url: https://g3w-suite.cittametropolitanaroma.it/ows/ortofoto_base/qdjango/119/?SERVICE=WMS
+      layers: nctr_2014
+      transparent: true
+    supported_formats: [png,jpeg,tiff]
+    coverage:
+      bbox: [11.492503, 41.374824, 13.51084, 42.340712]
+      srs: 'EPSG:4326'
+
+
+  dbtn5000_epsg25833_wms:
+    type: wms
+    wms_opts:
+      version: 1.3.0
+      featureinfo: True
+    req:
+      url: https://g3w-suite.cittametropolitanaroma.it/ows/7/qdjango/104/?SERVICE=WMS
+      layers: dbtn5000_epsg25833
+      transparent: true
+    supported_formats: [png,jpeg,tiff]
+    coverage:
+      bbox: [11.492503, 41.374824, 13.51084, 42.340712]
+      srs: 'EPSG:4326'
+
+
+  CTR_1990_wms:
+    type: wms
+    wms_opts:
+      version: 1.3.0
+      featureinfo: True
+    req:
+      url: https://g3w-suite.cittametropolitanaroma.it/ows/ortofoto_base/qdjango/116/?SERVICE=WMS
+      layers: CTR 1990
+      transparent: true
+    supported_formats: [png,jpeg,tiff]
+    coverage:
+      bbox: [11.492503, 41.374824, 13.51084, 42.340712]
+      srs: 'EPSG:4326'
+
+
+  dtm_5m_wms:
+    type: wms
+    wms_opts:
+      version: 1.3.0
+      featureinfo: True
+    req:
+      url: https://g3w-suite.cittametropolitanaroma.it/ows/ortofoto_base/qdjango/118/?SERVICE=WMS
+      layers: dtm_5m
+      transparent: true
+    supported_formats: [png,jpeg,tiff]
+    coverage:
+      bbox: [11.492503, 41.374824, 13.51084, 42.340712]
+      srs: 'EPSG:4326'
+
+
+  dem_colore_wms:
+    type: wms
+    wms_opts:
+      version: 1.3.0
+      featureinfo: True
+    req:
+      url: https://g3w-suite.cittametropolitanaroma.it/ows/ortofoto_base/qdjango/117/?SERVICE=WMS
+      layers: dem colore
+      transparent: true
+    supported_formats: [png,jpeg,tiff]
+    coverage:
+      bbox: [11.492503, 41.374824, 13.51084, 42.340712]
+      srs: 'EPSG:4326'
+
+
+  agea_2014_riquadri_totale_wms:
+    type: wms
+    wms_opts:
+      version: 1.3.0
+      featureinfo: True
+    req:
+      url: https://g3w-suite.cittametropolitanaroma.it/ows/7/qdjango/120/?SERVICE=WMS
+      layers: agea_2014_riquadri_totale
+      transparent: true
+    supported_formats: [png,jpeg,tiff]
+    coverage:
+      bbox: [11.492503, 41.374824, 13.51084, 42.340712]
+      srs: 'EPSG:4326'
+
+
+
