@@ -398,3 +398,113 @@ sources:
 
 
 
+# ---------------------------------------
+# MapProxy example seeding configuration.
+# ---------------------------------------
+#
+# This is a minimal MapProxy seeding configuration.
+# See full_seed_example.yaml and the documentation for more options.
+#
+
+coverages:
+  citta_metropolitana_roma:
+    bbox: [11.492503, 41.374824, 13.51084, 42.340712]
+    srs: 'EPSG:4326'
+
+
+
+###################################################################################
+# Seeds, generate by createconfig.py 2023-03-10T15:25:11.281994
+
+
+seeds:
+
+  egeos_2011_seed:
+    caches: [egeos_2011_cache]
+    coverages: [citta_metropolitana_roma]
+    grids: [localgrid]
+    levels:
+      to: 6
+
+
+  realvista2007_seed:
+    caches: [realvista2007_cache]
+    coverages: [citta_metropolitana_roma]
+    grids: [localgrid]
+    levels:
+      to: 6
+
+
+  it2000_nr_mare_seed:
+    caches: [it2000_nr_mare_cache]
+    coverages: [citta_metropolitana_roma]
+    grids: [localgrid]
+    levels:
+      to: 6
+
+
+  it2000_seed:
+    caches: [it2000_cache]
+    coverages: [citta_metropolitana_roma]
+    grids: [localgrid]
+    levels:
+      to: 6
+
+
+  aima_1996_seed:
+    caches: [aima_1996_cache]
+    coverages: [citta_metropolitana_roma]
+    grids: [localgrid]
+    levels:
+      to: 6
+
+
+  nctr_2014_seed:
+    caches: [nctr_2014_cache]
+    coverages: [citta_metropolitana_roma]
+    grids: [localgrid]
+    levels:
+      to: 6
+
+
+  dbtn5000_epsg25833_seed:
+    caches: [dbtn5000_epsg25833_cache]
+    coverages: [citta_metropolitana_roma]
+    grids: [localgrid]
+    levels:
+      to: 6
+
+
+  CTR_1990_seed:
+    caches: [CTR_1990_cache]
+    coverages: [citta_metropolitana_roma]
+    grids: [localgrid]
+    levels:
+      to: 6
+
+
+  dtm_5m_seed:
+    caches: [dtm_5m_cache]
+    coverages: [citta_metropolitana_roma]
+    grids: [localgrid]
+    levels:
+      to: 6
+
+
+  dem_colore_seed:
+    caches: [dem_colore_cache]
+    coverages: [citta_metropolitana_roma]
+    grids: [localgrid]
+    levels:
+      to: 6
+
+
+  agea_2014_riquadri_totale_seed:
+    caches: [agea_2014_riquadri_totale_cache]
+    coverages: [citta_metropolitana_roma]
+    grids: [localgrid]
+    levels:
+      to: 6
+
+
+
